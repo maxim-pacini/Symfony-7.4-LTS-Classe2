@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PublicController!{% endblock %}
+{% block title %}Accueil!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# pour afficher des variables on utilise {{ }}, puor effectuer une actions on utilise {% %} #}
+    <h1>salut {{ name }}, tu es sur le controleur {{ controller_name }}! ✅</h1>
+    {# twig dans symfony protège par défaut contre les attaques XSS #}
+    <p>script executé</p>
+    {{ scriptok|raw }} {# raw execute de manière brute #}
+    <p> script bloqué</p>
+    {{ xss }} {# mais par défault c'est bloqué  #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/WEBDEV/Desktop/Michael/cours/gitsymfony/Symfony-7.4-LTS-Classe2/src/Controller/PublicController.php</code></li>
-        <li>Your template at <code>C:/Users/WEBDEV/Desktop/Michael/cours/gitsymfony/Symfony-7.4-LTS-Classe2/templates/public/index.html.twig</code></li>
-    </ul>
+    {% include 'public/inc/menu.html.twig' %}
+    
 </div>
 {% endblock %}
